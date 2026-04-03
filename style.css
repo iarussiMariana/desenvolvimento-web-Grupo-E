@@ -102,3 +102,7 @@ input {
   border-radius: 6px;
   border: 1px solid #ccc;
 }
+
+button {
+  cursor: pointer;
+}
