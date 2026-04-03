@@ -7,23 +7,42 @@
 </head>
 <body>
 
-<header> ... </header>
+<header>
+  <div class="logo">Portal Previdenciário</div>
+  <nav>
+    <a href="index.html">Início</a>
+    <a href="servicos.html">Serviços</a>
+    <a href="sobre.html">Sobre</a>
+    <a href="contato.html">Contato</a>
+    <a href="login.html" class="btn-login">Login</a>
+  </nav>
+</header>
 
 <section class="hero">
   <div class="hero-content">
     <h1>Calculadoras Previdenciárias</h1>
+    <p>Escolha o tipo de cálculo</p>
   </div>
 </section>
 
 <section class="servicos">
   <div class="cards">
-    <div class="card">Aposentadoria por Idade</div>
-    <div class="card">Tempo de Contribuição</div>
-    <div class="card">Valor do Benefício</div>
+    <div class="card" onclick="mostrarCalc('idade')">Aposentadoria por Idade</div>
+    <div class="card" onclick="mostrarCalc('tempo')">Tempo de Contribuição</div>
+    <div class="card" onclick="mostrarCalc('beneficio')">Valor do Benefício</div>
   </div>
 </section>
 
-<footer> ... </footer>
+<section class="servicos">
+  <div id="calculadora"></div>
+</section>
 
+<footer>
+  <div class="footer-content">
+    <h3>Portal Previdenciário</h3>
+  </div>
+</footer>
+
+<script src="script.js"></script>
 </body>
 </html>
