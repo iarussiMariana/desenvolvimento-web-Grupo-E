@@ -70,3 +70,15 @@ function calcularBeneficio() {
   const beneficio = salario * 0.6;
   res.innerText = "Valor estimado: R$ " + beneficio.toFixed(2);
 }
+
+function login() {
+  const user = document.getElementById("user").value;
+  const pass = document.getElementById("pass").value;
+  const msg = document.getElementById("loginMsg");
+
+  if (user === "admin" && pass === "123") {
+    msg.innerText = "Login realizado com sucesso!";
+  } else {
+    msg.innerText = "Usuário ou senha incorretos.";
+  }
+}
