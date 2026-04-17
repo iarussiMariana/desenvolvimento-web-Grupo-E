@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <title>Amortização</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<header>...</header>
+
+<section class="hero">
+  <h1>Amortização</h1>
+  <p>Price, SAC, SACRE</p>
+</section>
+
+<section class="servicos">
+  <div id="calculadora">
+    <input type="number" id="valor" placeholder="Valor">
+    <input type="number" id="parcelas" placeholder="Parcelas">
+    <button onclick="calcularPrice()">Calcular Price</button>
+
+    <p id="resultado"></p>
+  </div>
+</section>
+
+<script>
+function calcularPrice() {
+  let v = valor.value;
+  let n = parcelas.value;
+  let taxa = 0.02;
+
+  let parcela = v * (taxa * Math.pow(1+taxa,n)) / (Math.pow(1+taxa,n)-1);
+  resultado.innerText = "Parcela: " + parcela.toFixed(2);
+}
+</script>
+
+</body>
+</html>

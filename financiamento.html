@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <title>Financiamento</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<header>...</header>
+
+<section class="hero">
+  <h1>Financiamento e Empréstimos</h1>
+</section>
+
+<section class="servicos">
+  <div id="calculadora">
+    <input type="number" id="valor" placeholder="Valor">
+    <input type="number" id="taxa" placeholder="Taxa (%)">
+    <input type="number" id="meses" placeholder="Meses">
+
+    <button onclick="calcular()">Calcular</button>
+    <p id="resultado"></p>
+  </div>
+</section>
+
+<script>
+function calcular() {
+  let v = valor.value;
+  let i = taxa.value/100;
+  let t = meses.value;
+
+  let total = v * Math.pow(1+i,t);
+  resultado.innerText = "Total: " + total.toFixed(2);
+}
+</script>
+
+</body>
+</html>

@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <title>Tempo de Contribuição</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<header>
+  <div class="logo">Portal Previdenciário</div>
+  <nav>
+    <a href="index.html">Início</a>
+    <a href="servicos.html">Serviços</a>
+    <a href="sobre.html">Sobre</a>
+    <a href="contato.html">Contato</a>
+    <a href="login.html" class="btn-login">Login</a>
+  </nav>
+</header>
+
+<section class="hero">
+  <div class="hero-content">
+    <h1>Tempo de Contribuição</h1>
+    <p>Calcule seu tempo de contribuição</p>
+  </div>
+</section>
+
+<section class="servicos">
+  <div id="calculadora">
+    <input type="number" id="anos" placeholder="Anos">
+    <input type="number" id="meses" placeholder="Meses">
+    <button onclick="calcularTempo()">Calcular</button>
+    <p id="resultado"></p>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-content">
+    <h3>Portal Previdenciário</h3>
+  </div>
+</footer>
+
+<script>
+function calcularTempo() {
+  let anos = parseInt(document.getElementById('anos').value) || 0;
+  let meses = parseInt(document.getElementById('meses').value) || 0;
+  let totalMeses = (anos * 12) + meses;
+  document.getElementById('resultado').innerText = 
+    "Tempo total: " + totalMeses + " meses";
+}
+</script>
+
+</body>
+</html>

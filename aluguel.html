@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <title>Reajuste de Aluguel</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<header>...</header>
+
+<section class="hero">
+  <h1>Reajuste de Aluguel</h1>
+</section>
+
+<section class="servicos">
+  <div id="calculadora">
+    <input type="number" id="valor" placeholder="Valor atual">
+    <input type="number" id="indice" placeholder="Índice (%)">
+
+    <button onclick="reajustar()">Calcular</button>
+    <p id="resultado"></p>
+  </div>
+</section>
+
+<script>
+function reajustar() {
+  let v = valor.value;
+  let i = indice.value/100;
+  resultado.innerText = "Novo valor: " + (v * (1+i)).toFixed(2);
+}
+</script>
+
+</body>
+</html>

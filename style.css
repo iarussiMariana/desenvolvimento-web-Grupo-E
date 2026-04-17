@@ -58,6 +58,11 @@ nav a {
   border: 1px solid white;
   color: white;
 }
+.terceiro {
+  background: transparent;
+  border: 1px solid white;
+  color: orange;
+}
 .servicos {
   padding: 40px;
 }
