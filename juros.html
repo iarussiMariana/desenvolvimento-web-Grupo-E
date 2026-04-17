@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <title>Juros</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<header>...</header>
+
+<section class="hero">
+  <h1>Juros Simples e Compostos</h1>
+</section>
+
+<section class="servicos">
+  <div id="calculadora">
+    <input type="number" id="capital" placeholder="Capital">
+    <input type="number" id="taxa" placeholder="Taxa (%)">
+    <input type="number" id="tempo" placeholder="Tempo">
+
+    <button onclick="jurosSimples()">Juros Simples</button>
+    <button onclick="jurosCompostos()">Juros Compostos</button>
+
+    <p id="resultado"></p>
+  </div>
+</section>
+
+<script>
+function jurosSimples() {
+  let c = capital.value;
+  let i = taxa.value / 100;
+  let t = tempo.value;
+  resultado.innerText = "Resultado: " + (c * (1 + i * t));
+}
+
+function jurosCompostos() {
+  let c = capital.value;
+  let i = taxa.value / 100;
+  let t = tempo.value;
+  resultado.innerText = "Resultado: " + (c * Math.pow(1 + i, t));
+}
+</script>
+
+</body>
+</html>
