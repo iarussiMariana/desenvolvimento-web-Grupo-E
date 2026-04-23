@@ -193,15 +193,27 @@ function calcularAmortizacao() {
   const tipo = document.getElementById("tipoAmortizacao").value;
   const res = document.getElementById("resultado");
 
+  let saldo = valor;
+  let resultadoHTML = "";
+
   if (tipo === "price") {
     const parcela = valor * (juros * Math.pow(1 + juros, parcelas)) / (Math.pow(1 + juros, parcelas) - 1);
-    res.innerText = "Parcela (Price): R$ " + parcela.toFixed(2);
-  }
 
-  if (tipo === "sac") {
-    const amortizacao = valor / parcelas;
-    let primeiraParcela = amortizacao + (valor * juros);
-    res.innerText = "Primeira parcela (SAC): R$ " + primeiraParcela.toFixed(2);
+    for (let i = 1; i <= parcelas; i++) {
+      const jurosParcela = saldo * juros;
+      const amortizacao = parcela - jurosParcela;
+      saldo -= amortizacao;
+
+      resultadoHTML += `
+        <p>
+          Parcela ${i}: <br>
+          Juros: R$ ${jurosParcela.toFixed(2)} <br>
+          Amortização: R$ ${amortizacao.toFixed(2)} <br>
+          Saldo Devedor: R$ ${saldo.toFixed(2)}
+        </p>
+        <hr>
+      `;
+    }
   }
 }
 
