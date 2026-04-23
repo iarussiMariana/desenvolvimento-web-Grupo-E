@@ -98,6 +98,26 @@ function mostrarCalc(tipo) {
       </div>
     `;
   }
+
+  if (tipo === "Qsalario") {
+    area.innerHTML = `
+      <div class="card">
+        <h2>Qualidade de Segurado</h2>
+
+        <input type="month" id="mesAno"><br><br>
+        <input type="number" id="valorHora" placeholder="Valor da hora"><br><br>
+        <input type="number" id="horasMes" placeholder="Horas trabalhadas no mês"><br><br>
+
+        <button onclick="calcularPontos()">Calcular</button>
+        <button onclick="repetirCalculo()">Repetir último X vezes</button>
+
+        <br><br>
+        <input type="number" id="vezes" placeholder="Quantas vezes repetir"><br><br>
+
+        <p id="resultado"></p>
+      </div>
+    `;
+  }
 }
 
 function calcularIdade() {
@@ -207,4 +227,80 @@ function calcularPontos() {
     const falta = minimo - pontos;
     res.innerText = `Você tem ${pontos} pontos. Faltam ${falta} pontos para se aposentar.`;
   }
+}
+
+const dadosINSS = {
+  2024: { salarioMin: 1412, teto: 7786.02, moeda: "R$" },
+  2023: { salarioMin: 1320, teto: 7507.49, moeda: "R$" },
+  2022: { salarioMin: 1212, teto: 7087.22, moeda: "R$" }
+};
+
+function calcularPontos() {
+  const mesAno = document.getElementById("mesAno").value;
+  const valorHora = parseFloat(document.getElementById("valorHora").value);
+  const horasMes = parseFloat(document.getElementById("horasMes").value);
+  const res = document.getElementById("resultado");
+
+  if (!mesAno || !valorHora || !horasMes) {
+    res.innerText = "Preencha todos os campos!";
+    return;
+  }
+
+  const ano = mesAno.split("-")[0];
+  const dados = dadosINSS[ano];
+
+  if (!dados) {
+    res.innerText = "Dados do ano não disponíveis.";
+    return;
+  }
+
+  const valorMensal = valorHora * horasMes;
+
+  res.innerHTML = `
+    Valor Mensal: ${dados.moeda} ${valorMensal.toFixed(2)} <br>
+    Salário Mínimo: ${dados.moeda} ${dados.salarioMin} <br>
+    Teto INSS: ${dados.moeda} ${dados.teto}
+  `;
+}
+
+function repetirCalculo() {
+  const vezes = parseInt(document.getElementById("vezes").value);
+  const mesAnoInput = document.getElementById("mesAno");
+  const res = document.getElementById("resultado");
+
+  if (!vezes || vezes <= 0) {
+    res.innerText = "Informe um número válido de repetições.";
+    return;
+  }
+
+  let [ano, mes] = mesAnoInput.value.split("-").map(Number);
+
+  let resultadoFinal = "";
+
+  for (let i = 0; i < vezes; i++) {
+    // Avança o mês
+    mes++;
+    if (mes > 12) {
+      mes = 1;
+      ano++;
+    }
+
+    const novoMes = `${ano}-${String(mes).padStart(2, "0")}`;
+    mesAnoInput.value = novoMes;
+
+    const valorHora = parseFloat(document.getElementById("valorHora").value);
+    const horasMes = parseFloat(document.getElementById("horasMes").value);
+
+    const dados = dadosINSS[ano];
+
+    if (!dados) continue;
+
+    const valorMensal = valorHora * horasMes;
+
+    resultadoFinal += `
+      ${novoMes} → ${dados.moeda} ${valorMensal.toFixed(2)}<br>
+    `;
+  }
+
+  res.innerHTML = resultadoFinal;
 }

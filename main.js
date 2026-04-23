@@ -64,3 +64,4 @@ loginBtn.addEventListener('click', () => {
     console.log(`Email: ${email.value}`)
     console.log(`Password: ${password.value}`)
 })
+
