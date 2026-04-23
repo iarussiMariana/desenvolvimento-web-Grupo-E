@@ -102,7 +102,7 @@ function mostrarCalc(tipo) {
   if (tipo === "Qsalario") {
     area.innerHTML = `
       <div class="card">
-        <h2>Qualidade de Segurado</h2>
+        <h2>Qualidade de Salario</h2>
 
         <input type="month" id="mesAno"><br><br>
         <input type="number" id="valorHora" placeholder="Valor da hora"><br><br>
