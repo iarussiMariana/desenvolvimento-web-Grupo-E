@@ -7,7 +7,6 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 
-
 const config = {
   user: "seu_usuario",
   password: "sua_senha",
