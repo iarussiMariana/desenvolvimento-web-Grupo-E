@@ -105,6 +105,4 @@ Este projeto é de uso acadêmico e livre para estudos.
 
 ## Data da Ultima Edição
 
-05/05/2026
-
----
+06/05/2026
