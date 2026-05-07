@@ -3,6 +3,6 @@
     "development"
   ],
   "hints": {
-    "meta-viewport": "off"
+    "meta-viewport": "off" //mudar pra on quando for colocar o site no ar, para evitar problemas de responsividade
   }
 }
