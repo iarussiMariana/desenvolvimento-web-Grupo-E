@@ -79,9 +79,11 @@ export default function Layout() {
             </nav>
 
             {/* Mobile Menu Button */}
-            <button 
+            <button
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
               className="md:hidden p-2 text-gray-700 hover:bg-gray-100 rounded-lg"
+              aria-label={mobileMenuOpen ? "Fechar menu" : "Abrir menu"}
+              title={mobileMenuOpen ? "Fechar menu" : "Abrir menu"}
             >
               <Menu className="w-6 h-6" />
             </button>

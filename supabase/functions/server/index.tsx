@@ -4,6 +4,9 @@ import { logger } from "hono/logger";
 import { createClient } from "@supabase/supabase-js";
 import * as kv from "./kv_store.tsx";
 const app = new Hono();
+const Deno = (globalThis as any).Deno;
+
+
 
 // Enable logger
 app.use('*', logger(console.log));
@@ -35,8 +38,8 @@ app.post("/make-server-d4ef19aa/signup", async (c) => {
     }
 
     const supabase = createClient(
-      Deno.env.get('SUPABASE_URL')!,
-      Deno.env.get('SUPABASE_SERVICE_ROLE_KEY')!,
+      Deno.env.get("SUPABASE_URL")!,
+      Deno.env.get("SUPABASE_SERVICE_ROLE_KEY")!
     );
 
     const { data, error } = await supabase.auth.admin.createUser({
