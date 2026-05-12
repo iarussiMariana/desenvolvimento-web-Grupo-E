@@ -1,4 +1,4 @@
-import { useState } from 'react';
+/*import { useState } from 'react';
 import { Link, useNavigate } from 'react-router';
 import { useAuth } from '../contexts/AuthContext';
 
@@ -93,6 +93,117 @@ export default function Login() {
           <Link to="/" className="text-gray-500 hover:text-gray-700 text-sm">
             ← Voltar para a página inicial
           </Link>
+        </div>
+      </div>
+    </div>
+  );
+}*/
+
+import { useState } from 'react';
+import { Link, useNavigate } from 'react-router';
+
+import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
+import { getAuth, signInWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-auth.js";
+
+const firebaseConfig = {
+  apiKey: "AIzaSyDIkzpgOz8uDRSmv8Flo76ekwqzG4t_2EQ",
+  authDomain: "portprev-d81ba.firebaseapp.com",
+  projectId: "portprev-d81ba",
+  storageBucket: "portprev-d81ba.firebasestorage.app",
+  messagingSenderId: "593362605191",
+  appId: "1:593362605191:web:7d013144e93e51c24fd422",
+  measurementId: "G-47WS7923C2"
+};
+
+const app = initializeApp(firebaseConfig);
+const auth = getAuth(app);
+
+export default function Login() {
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [error, setError] = useState('');
+  const [loading, setLoading] = useState(false);
+
+  const navigate = useNavigate();
+
+  async function handleSubmit(e: React.FormEvent) {
+    e.preventDefault();
+    setError('');
+    setLoading(true);
+
+    try {
+      await signInWithEmailAndPassword(auth, email, password);
+
+      // login OK
+      navigate('/'); // vai pra home
+
+    } catch (err: any) {
+      setError(err.message || 'Erro ao fazer login');
+    }
+
+    setLoading(false);
+  }
+
+  return (
+    // 👉 SEU JSX ORIGINAL INTACTO (não mexi)
+    <div className="min-h-screen bg-gradient-to-br from-blue-50 to-cyan-50 flex items-center justify-center p-4">
+      <div className="bg-white rounded-2xl shadow-xl p-8 w-full max-w-md">
+        <div className="text-center mb-8">
+          <h1 className="text-3xl font-bold text-gray-900 mb-2">Entrar</h1>
+          <p className="text-gray-600">Acesse sua conta na plataforma</p>
+        </div>
+
+        <form onSubmit={handleSubmit} className="space-y-6">
+          <div>
+            <label className="block text-sm font-medium text-gray-700 mb-2">
+              E-mail
+            </label>
+            <input
+              type="email"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              required
+              className="w-full px-4 py-3 border border-gray-300 rounded-lg"
+              placeholder="seu@email.com"
+            />
+          </div>
+
+          <div>
+            <label className="block text-sm font-medium text-gray-700 mb-2">
+              Senha
+            </label>
+            <input
+              type="password"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+              required
+              className="w-full px-4 py-3 border border-gray-300 rounded-lg"
+              placeholder="••••••••"
+            />
+          </div>
+
+          {error && (
+            <div className="bg-red-50 border border-red-200 text-red-800 px-4 py-3 rounded-lg text-sm">
+              {error}
+            </div>
+          )}
+
+          <button
+            type="submit"
+            disabled={loading}
+            className="w-full bg-gradient-to-r from-blue-600 to-cyan-600 text-white py-3 rounded-lg font-semibold"
+          >
+            {loading ? 'Entrando...' : 'Entrar'}
+          </button>
+        </form>
+
+        <div className="mt-6 text-center">
+          <p className="text-gray-600">
+            Não tem uma conta?{' '}
+            <Link to="/cadastro" className="text-blue-600 font-semibold">
+              Cadastre-se
+            </Link>
+          </p>
         </div>
       </div>
     </div>
