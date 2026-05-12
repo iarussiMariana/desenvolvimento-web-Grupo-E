@@ -173,7 +173,7 @@ export default function Signup() {
 
   const navigate = useNavigate();
 
-  async function handleSubmit(e: React.FormEvent) {
+  /*async function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
     setError('');
 
@@ -216,6 +216,49 @@ export default function Signup() {
         setError('Erro ao criar conta. Tente novamente.');
         console.error(err);
       }
+    }
+
+    setLoading(false);
+  }*/
+
+  async function handleSubmit(e: React.FormEvent) {
+    e.preventDefault();
+    setError('');
+
+    if (password !== confirmPassword) {
+      setError('As senhas não coincidem');
+      return;
+    }
+
+    if (password.length < 6) {
+      setError('A senha deve ter pelo menos 6 caracteres');
+      return;
+    }
+
+    setLoading(true);
+
+    try {
+      // 🔹 cria usuário no Auth
+      const userCredential = await createUserWithEmailAndPassword(auth, email, password);
+      const user = userCredential.user;
+
+      // 🔹 salva nome no Auth
+      await updateProfile(user, {
+        displayName: name
+      });
+
+      // 🔥 SALVA NO FIRESTORE (o que você queria)
+      await setDoc(doc(db, "users", user.uid), {
+        name: name,
+        email: email,
+        createdAt: new Date()
+      });
+
+      alert("Conta criada com sucesso!");
+      navigate("/login");
+
+    } catch (err: any) {
+      setError(err.message);
     }
 
     setLoading(false);
