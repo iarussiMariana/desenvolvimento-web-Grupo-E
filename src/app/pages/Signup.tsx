@@ -145,9 +145,9 @@ export default function Signup() {
 
 import { useState } from 'react';
 import { Link, useNavigate } from 'react-router';
-
-import { auth } from "../contexts/firebase";
+import { auth, db } from "../contexts/firebase";
 import { createUserWithEmailAndPassword, updateProfile } from "firebase/auth";
+import { doc, setDoc } from "firebase/firestore";
 
 // Config Firebase
 const firebaseConfig = {
@@ -199,6 +199,8 @@ export default function Signup() {
           displayName: name
         });
       }
+
+      await userCredential.user.reload();
 
       alert('Conta criada com sucesso! Faça login para continuar.');
       navigate('/login');
