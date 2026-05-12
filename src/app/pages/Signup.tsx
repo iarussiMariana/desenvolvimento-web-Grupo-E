@@ -146,8 +146,8 @@ export default function Signup() {
 import { useState } from 'react';
 import { Link, useNavigate } from 'react-router';
 
-import { initializeApp } from "firebase/app";
-import { getAuth, createUserWithEmailAndPassword, updateProfile } from "firebase/auth";
+import { auth } from "../contexts/firebase";
+import { createUserWithEmailAndPassword, updateProfile } from "firebase/auth";
 
 // Config Firebase
 const firebaseConfig = {
@@ -160,8 +160,8 @@ const firebaseConfig = {
   measurementId: "G-47WS7923C2"
 };
 
-const app = initializeApp(firebaseConfig);
-const auth = getAuth(app);
+/*const app = initializeApp(firebaseConfig);
+const auth = getAuth(app);*/
 
 export default function Signup() {
   const [name, setName] = useState('');

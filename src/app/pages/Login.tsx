@@ -102,8 +102,9 @@ export default function Login() {
 import { useState } from 'react';
 import { Link, useNavigate } from 'react-router';
 
-import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
-import { getAuth, signInWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-auth.js";
+import { auth } from "../contexts/firebase";
+import { signInWithEmailAndPassword } from "firebase/auth";
+
 
 const firebaseConfig = {
   apiKey: "AIzaSyDIkzpgOz8uDRSmv8Flo76ekwqzG4t_2EQ",
@@ -115,8 +116,8 @@ const firebaseConfig = {
   measurementId: "G-47WS7923C2"
 };
 
-const app = initializeApp(firebaseConfig);
-const auth = getAuth(app);
+/*const app = initializeApp(firebaseConfig);
+const auth = getAuth(app);*/
 
 export default function Login() {
   const [email, setEmail] = useState('');
@@ -126,7 +127,7 @@ export default function Login() {
 
   const navigate = useNavigate();
 
-  async function handleSubmit(e: React.FormEvent) {
+  /*async function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
     setError('');
     setLoading(true);
@@ -142,8 +143,25 @@ export default function Login() {
     }
 
     setLoading(false);
-  }
+  }*/
 
+  async function handleSubmit(e: React.FormEvent) {
+    e.preventDefault();
+    setError('');
+    setLoading(true);
+
+    try {
+      await signInWithEmailAndPassword(auth, email, password);
+
+      navigate('/'); // entrou
+
+    } catch (err: any) {
+      setError(err.message);
+    }
+
+    setLoading(false);
+  }
+  
   return (
     // 👉 SEU JSX ORIGINAL INTACTO (não mexi)
     <div className="min-h-screen bg-gradient-to-br from-blue-50 to-cyan-50 flex items-center justify-center p-4">
