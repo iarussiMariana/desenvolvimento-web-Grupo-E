@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { DollarSign, Calendar } from "lucide-react";
+import Input from "@mui/material/Input";
 
 export default function ValoresAtrasados() {
   const [benefitValue, setBenefitValue] = useState("");
@@ -67,7 +68,7 @@ export default function ValoresAtrasados() {
 
           <div>
             <label className="block text-sm mb-2 text-gray-700">Data Inicial (DIB)</label>
-            <input
+            <Input
               type="date"
               value={startDate}
               onChange={(e) => setStartDate(e.target.value)}
@@ -78,7 +79,7 @@ export default function ValoresAtrasados() {
 
           <div>
             <label className="block text-sm mb-2 text-gray-700">Data Final (Implantação)</label>
-            <input
+            <Input
               type="date"
               value={endDate}
               onChange={(e) => setEndDate(e.target.value)}

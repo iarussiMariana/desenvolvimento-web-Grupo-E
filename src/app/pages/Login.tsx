@@ -127,24 +127,6 @@ export default function Login() {
 
   const navigate = useNavigate();
 
-  /*async function handleSubmit(e: React.FormEvent) {
-    e.preventDefault();
-    setError('');
-    setLoading(true);
-
-    try {
-      await signInWithEmailAndPassword(auth, email, password);
-
-      // login OK
-      navigate('/'); // vai pra home
-
-    } catch (err: any) {
-      setError(err.message || 'Erro ao fazer login');
-    }
-
-    setLoading(false);
-  }*/
-
   async function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
     setError('');

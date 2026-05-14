@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { User, Calendar, Award } from "lucide-react";
+import Input from "@mui/material/Input";
 
 export default function AposentadoriaIdade() {
   const [gender, setGender] = useState<"masculino" | "feminino">("masculino");
@@ -81,7 +82,7 @@ export default function AposentadoriaIdade() {
 
           <div>
             <label className="block text-sm mb-2 text-gray-700">Data de Nascimento</label>
-            <input
+            <Input
               type="date"
               value={birthDate}
               onChange={(e) => setBirthDate(e.target.value)}

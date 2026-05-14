@@ -4,8 +4,10 @@ import CalculationPage from "./pages/CalculationPage";
 import Login from "./pages/Login";
 import Signup from "./pages/Signup";
 import Layout from "./components/Layout";
+import Perfil from "./pages/perfil";
 
 export const router = createBrowserRouter([
+  
   {
     path: "/",
     Component: Layout,
@@ -22,4 +24,8 @@ export const router = createBrowserRouter([
     path: "/cadastro",
     Component: Signup,
   },
+  {
+    path: "/perfil", 
+    Component: Perfil,
+  }
 ]);

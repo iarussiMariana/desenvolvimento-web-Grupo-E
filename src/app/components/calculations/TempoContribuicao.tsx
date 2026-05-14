@@ -1,5 +1,7 @@
 import { useState } from "react";
 import { Plus, Trash2, Calendar } from "lucide-react";
+import { Button } from "react-day-picker";
+import Input from "@mui/material/Input";
 
 interface Period {
   id: string;
@@ -75,7 +77,7 @@ export default function TempoContribuicao() {
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                 <div>
                   <label className="block text-sm mb-2 text-gray-700">Data Inicial</label>
-                  <input
+                  <Input
                     type="date"
                     value={period.startDate}
                     onChange={(e) => updatePeriod(period.id, "startDate", e.target.value)}
@@ -84,7 +86,7 @@ export default function TempoContribuicao() {
                 </div>
                 <div>
                   <label className="block text-sm mb-2 text-gray-700">Data Final</label>
-                  <input
+                  <Input
                     type="date"
                     value={period.endDate}
                     onChange={(e) => updatePeriod(period.id, "endDate", e.target.value)}

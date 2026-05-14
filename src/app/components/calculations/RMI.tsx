@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { FileText, Plus, Trash2 } from "lucide-react";
+import { Button } from "react-day-picker";
 
 interface Salary {
   id: string;
@@ -85,12 +86,12 @@ export default function RMI() {
                 </div>
               </div>
               {salaries.length > 1 && (
-                <button
+                <Button
                   onClick={() => removeSalary(salary.id)}
                   className="text-red-500 hover:text-red-700 transition-colors p-2"
                 >
                   <Trash2 className="w-5 h-5" />
-                </button>
+                </Button>
               )}
             </div>
           ))}

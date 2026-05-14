@@ -20,7 +20,7 @@ export default function Layout() {
   function handleLogout() {
     signOut(auth)
       .then(() => {
-        alert("Saiu da conta");
+        console.log("Saiu da conta");
       })
       .catch(console.error);
   }
@@ -65,10 +65,15 @@ export default function Layout() {
               {user ? (
                 <>
                   <div className="flex items-center gap-2 text-gray-700 px-3 py-2 bg-gray-100 rounded-lg">
+                    <Link
+                      to="/perfil"
+                      className="text-gray-700 text-sm hover:text-purple-600 transition"
+                    >
                     <User className="w-5 h-5" />
                     <span className="font-medium">
                       {user?.displayName || user?.email}
                     </span>
+                    </Link>
                   </div>
                   <button
                     onClick={handleLogout}
@@ -77,7 +82,7 @@ export default function Layout() {
                     <LogOut className="w-5 h-5" />
                     <span>Sair</span>
                   </button>
-                </>
+                </>             
               ) : (
                 <>
                   <Link
